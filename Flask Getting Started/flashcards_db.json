@@ -1,0 +1,18 @@
+[
+  {
+    "question": "Hello",
+    "answer": "Hola"
+  },
+    {
+    "question": "Goodbye",
+    "answer": "Adiós"
+  },
+    {
+    "question": "Please",
+    "answer": "Por favor"
+  },
+    {
+    "question": "Thank you",
+    "answer": "Gracias"
+  }
+]

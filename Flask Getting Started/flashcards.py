@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from datetime import datetime
+from model import db
 
 # Each method needs to have a unique name for a web app in flask or it will give you an error.
 
@@ -10,7 +11,14 @@ CORS(app)
 
 @app.route("/", methods=['GET', 'POST'])
 def welcome():
-    return render_template("welcome.html")
+    return render_template("welcome.html",
+                           message="Here's a message from the view.")
+
+
+@app.route("/card")
+def card_view():
+    card = db[0]
+    return render_template("card.html", card=card)
 
 
 @app.route("/date")
