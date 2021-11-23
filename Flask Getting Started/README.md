@@ -3,6 +3,10 @@
 ## Installing packages in project
 - When creating a web application with Flask you need to first install Flask in your project using the command: ` pip install -U Flask` and adding the following import statement: `from flask import FLASK`
 
+## Adding Flask to Application
+- In your class file under the import statements insert this line of code: `app = Flask(__name__)
+`. This sets the `__name__` variable to the module name. For instance in our flashcards.py file our variable `__name__` will be set to `flashcards`. 
+
 ## Setting FLASK_APP & FLASK_ENV Variables
 - You need to specify what file and environment you want your flask app to run and in what mode. For this project we want to run `flashcards.py` in development mode.
 
@@ -27,7 +31,7 @@ Mac users:
 
 ## Running Flask Application
 - Once your environment is successfully set up you can run the following command: `python -m flask run -p 9999
-` this will run the flask application on the specified port 9999. 
+` this will run the flask application on the specified port 9999. To stop the server just press CTR + C.
 ## CORS 
 - To enable your application to send and receive requests from other web apps you need to enable CORS (Cross Origin Resource Sharing). You can enable CORS in your application with the following steps:
 - First install the package flask-cors using the following command in your terminal window: `pip install -U flask-cors`
