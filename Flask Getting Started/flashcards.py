@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, abort
 from flask_cors import CORS
 from datetime import datetime
 from model import db
@@ -17,8 +17,11 @@ def welcome():
 
 @app.route("/card/<int:index>")
 def card_view(index):
-    card = db[index]
-    return render_template("card.html", card=card)
+    try:
+        card = db[index]
+        return render_template("card.html", card=card, index=index, max_index=len(db)-1)
+    except IndexError:
+        abort(404)
 
 
 @app.route("/date")
