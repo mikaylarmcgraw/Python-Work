@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from datetime import datetime
 
@@ -10,7 +10,7 @@ CORS(app)
 
 @app.route("/", methods=['GET', 'POST'])
 def welcome():
-    return "You are successfully connected to flask app"
+    return render_template("welcome.html")
 
 
 @app.route("/date")
