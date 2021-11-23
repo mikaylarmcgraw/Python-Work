@@ -15,9 +15,9 @@ def welcome():
                            message="Here's a message from the view.")
 
 
-@app.route("/card")
-def card_view():
-    card = db[0]
+@app.route("/card/<int:index>")
+def card_view(index):
+    card = db[index]
     return render_template("card.html", card=card)
 
 

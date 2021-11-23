@@ -31,7 +31,7 @@ Mac users:
 
 ## Running Flask Application
 - Once your environment is successfully set up you can run the following command: `python -m flask run -p 9999
-` this will run the flask application on the specified port 9999. To stop the server just press CTR + C.
+` this will run the flask application on the specified port 9999. To stop the server just press CTR + C. In general there's no need to typically restart flask when making changes to your code. Flask will refresh itself and pick up your changes.
 ## CORS 
 - To enable your application to send and receive requests from other web apps you need to enable CORS (Cross Origin Resource Sharing). You can enable CORS in your application with the following steps:
 - First install the package flask-cors using the following command in your terminal window: `pip install -U flask-cors`
@@ -41,3 +41,8 @@ Mac users:
 ## Jinja Templates
 
 Our flask application has a `templates` directory which contains components that display data to the user. Jinja templates generate text files which we use to create HTML.  Templates are text files with placehoders for varaibles you can see we insert a Jinja variable in our html document called `{{message}}` which we specify the variable contents in the view `flashcards.py`. You can also add logic to these templates such as if, for, filter statements, etc...
+
+## Routing
+
+App routing is used to map the specific URL with the associated function intended to perform a task. You specify a route to a function by adding `app.route("/cards")` above it. The route: `app.route("/cards)` for instance can display a list of all flashcards we have in our json file. You can pass in parameters to the route as well by using the `<type: variable>` syntax. For instance if you wanted to view a flashcard with index value 1 the route would look like: `app.route("/cards/<int:index")`
+
