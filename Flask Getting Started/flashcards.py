@@ -25,6 +25,20 @@ def card_view(index):
         abort(404)
 
 
+@app.route("/api/card/")
+def api_card_list():
+    # must wrap a list with jsonify it's not allowed to return just a list of data in flask
+    return jsonify(db)
+
+
+@app.route('/api/card/<int:index>')
+def api_card_detail(index):
+    try:
+        return db[index]
+    except IndexError:
+        abort(404)
+
+
 @app.route("/date")
 def date():
     return"this is another method call." + str(datetime.now())
