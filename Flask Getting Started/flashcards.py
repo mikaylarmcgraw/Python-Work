@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, abort
+from flask import Flask, jsonify, request, render_template, abort, redirect, url_for
 from flask_cors import CORS
 from datetime import datetime
 from model import db
@@ -23,6 +23,30 @@ def card_view(index):
         return render_template("card.html", card=card, index=index, max_index=len(db)-1)
     except IndexError:
         abort(404)
+
+
+@app.route('/recommendation', methods=["GET", "POST"])
+def recommendations():
+    if request.method == "POST":
+        # form has been submitted, process data
+        card = {"question": request.content_type,
+                "answer": request.content_type}
+        db.append(card)
+        return "successful response POST call"
+    else:
+        return "success response from GET call"
+
+
+@app.route('/add_card', methods=["GET", "POST"])
+def add_card():
+    if request.method == "POST":
+        # form has been submitted, process data
+        card = {"question": request.form['question'],
+                "answer": request.form['answer']}
+        db.append(card)
+        return redirect(url_for('card_view', index=(len(db)-1)))
+    else:
+        return render_template("add_card.html")
 
 
 @app.route("/api/card/")
