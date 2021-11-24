@@ -12,7 +12,8 @@ CORS(app)
 @app.route("/", methods=['GET', 'POST'])
 def welcome():
     return render_template("welcome.html",
-                           message="Here's a message from the view.")
+                           cards=db
+                           )
 
 
 @app.route("/card/<int:index>")
