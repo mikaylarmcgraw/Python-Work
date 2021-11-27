@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, jsonify, request, render_template, abort, redirect, url_for
 from flask_cors import CORS
 from datetime import datetime
@@ -29,10 +31,21 @@ def card_view(index):
 def recommendations():
     if request.method == "POST":
         # form has been submitted, process data
+        print("this is what the request looks like:")
+
+        # this captures json object in variable r
+        r = request.data
+
+        # this loads json object into y
+        y = json.loads(r)
+
+        # access properties in the json object array
+        print(y["track"])
+
         card = {"question": request.content_type,
                 "answer": request.content_type}
         db.append(card)
-        return "successful response POST call"
+        return "Here is your track: " + y["track"]
     else:
         return "success response from GET call"
 
@@ -41,6 +54,7 @@ def recommendations():
 def add_card():
     if request.method == "POST":
         # form has been submitted, process data
+
         card = {"question": request.form['question'],
                 "answer": request.form['answer']}
         db.append(card)
